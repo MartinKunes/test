@@ -1,7 +1,7 @@
-var pocet = 9;
-var barvicky = [];
+var diff = 3;
+var colors = [];
 var vyber;
-var boxs = document.querySelectorAll(".box");
+var colorBox = document.querySelectorAll(".barvy");
 var popis = document.getElementById("popis");
 var rf = document.querySelector("#rf");
 var resetB = document.querySelector("#reset");
@@ -46,12 +46,12 @@ function reset(){
 
     popis.textContent = vyber;
     resetB.textContent = "Reset";
-    for(var i = 0; i < boxs.length; i++){
+    for(var i = 0; i < colorBox.length; i++){
         if(barvicky[i]){
-            boxs[i].style.display = "block";
-            boxs[i].style.background = barvicky[i];
+            colorBox[i].style.display = "block";
+            colorBox[i].style.background = barvicky[i];
         }else{
-            boxs[i].style.display = "none;"
+            colorBox[i].style.display = "none;"
         }
     }
 }
@@ -68,14 +68,17 @@ function setupModBu(){
             modB[2].classList.remove("selected");
             this.classList.add("selected");
             if(this.textContent === "Easy"){
-                reset();
-                pocet = 3;
+                colors = [];
+    colorBox.innerHTML = "";
+    diff = 3;
             } else if(this.textContent === "Medium"){
-                reset();
-                pocet = 6;
+                colors = [];
+    colorBox.innerHTML = "";
+    diff = 6;
             }else {
-                reset();
-                pocet = 9;
+                colors = [];
+    colorBox.innerHTML = "";
+    diff = 9;
             }
             reset();
         });
@@ -83,8 +86,8 @@ function setupModBu(){
 }
 
 function setupBox(){
-    for(var i = 0; i < boxs.length; i++){
-        boxs[i].addEventListener("click", function () {
+    for(var i = 0; i < colorBox.length; i++){
+        colorBox[i].addEventListener("click", function () {
             var rgb = this.style.background;
             function rgbhex(rgb){
                 if(rgb.search("rgb") == -1) {
